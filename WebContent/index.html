@@ -12,43 +12,44 @@
 				<div>
 					<form name="empresaForm" class="form-horizontal">
 						<div class="form-group">
-							<label for="inputNomeFantasia" class="col-sm-2 control-label">Nome fantasia: </label> 
+							<label for="inputNomeFantasia" class="col-sm-2 control-label">*Nome fantasia: </label> 
 							<div class="col-sm-10"> 
-								<input class="form-control" type="text" name="nomeFantasia" ng-model="empresa.nomeFantasia" ng-required="true">	
+								<input class="form-control" type="text"  name="nomeFantasia" ng-model="empresa.nomeFantasia" ng-required="true" placeholder="Nome fantasia">	
 							</div> 
 						</div>
 
 						<div class="form-group">
-							<label for="inputRazaoSocial" class="col-sm-2 control-label">Razão social: </label>
+							<label for="inputRazaoSocial" class="col-sm-2 control-label">*Razão social: </label>
 							<div class="col-sm-10"> 
-								<input class="form-control" type="text" name="razaoSocial" ng-model="empresa.razaoSocial" ng-required="true">							
+								<input class="form-control" type="text" name="razaoSocial" ng-model="empresa.razaoSocial" ng-required="true" placeholder="Razão social">							
 							</div>
 						</div>
 						
 						<div class="form-group">
-							<label for="inputCNPJ" class="col-sm-2 control-label">CNPJ: </label>
+							<label for="inputCNPJ" class="col-sm-2 control-label">*CNPJ: </label>
 							<div class="col-sm-10">
-								<input class="form-control" type="text" name="cnpj" ng-model="empresa.cnpj" ng-required="true">
+								<input class="form-control" type="text" name="cnpj" ng-model="empresa.cnpj" ng-required="true" ng-pattern="/^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/" placeholder="00.000.000/0000-00">
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputDDD" class="col-sm-2 control-label">DDD: </label>
+							<label for="inputDDD" class="col-sm-2 control-label">*DDD: </label>
 							<div class="col-sm-1">
-								<input class="form-control" type="text" name="ddd" ng-model="empresa.ddd" ng-required="true">
+								<input class="form-control" type="text" name="ddd" ng-model="empresa.ddd" ng-required="true" placeholder="00" maxlength="2" ng-pattern="/^[0-9]{2}$/">
 							</div>
 
-							<label for="inputTelefone" class="col-sm-2 control-label">Telefone: </label>
+							<label for="inputTelefone" class="col-sm-2 control-label">*Telefone: </label>
 							<div class="col-sm-7">
-								<input class="form-control" type="text" name="telefone" ng-model="empresa.telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/">
+								<input class="form-control" type="text" name="telefone" ng-model="empresa.telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/" placeholder="0000-0000">
 							</div>
 
 						</div>
 						<div class="form-group">
 							<label for="inputSite" class="col-sm-2 control-label">Site: </label>
 							<div class="col-sm-10">
-								<input class="form-control" type="text" name="site" ng-model="empresa.site">
+								<input class="form-control" type="text" name="site" ng-model="empresa.site" placeholder="www.site.com">
 							</div>
 						</div>
+						<span>*Campos obrigatórios</span>
 						<div class="form-group"> 
 							<div class="col-sm-offset-2 col-sm-2"> 
 								<button type="submit" class="btn btn-primary form-control"  ng-click="adicionarEmpresa(empresa)" ng-disabled= "empresaForm.$invalid">Salvar</button> 
@@ -66,11 +67,13 @@
 					</div>
 
 					<div ng-messages="empresaForm.cnpj.$error" ng-show="empresaForm.cnpj.$dirty" >
-						<div class="alert alert-danger" ng-message="required">O campo cnpj é obrigatório.</div>
+						<div class="alert alert-danger" ng-message="required">O campo CNPJ é obrigatório.</div>
+						<div class="alert alert-danger" ng-message="pattern">O campo CNPJ deve estar no formato "00.000.000/0000-00".</div>
 					</div>
 					
 					<div ng-messages="empresaForm.ddd.$error" ng-show="empresaForm.ddd.$dirty">
 						<div class="alert alert-danger" ng-message="required">O campo DDD é obrigatório.</div>
+						<div class="alert alert-danger" ng-message="pattern">DDD deve estar no formato "00".</div>
 					</div>
 					
 					<div ng-messages="empresaForm.telefone.$error" ng-show="empresaForm.telefone.$dirty">
@@ -85,7 +88,7 @@
 						<th width="20%">Nome</th>
 						<th width="10%">Razão social</th>
 						<th width="10%">CNPJ</th>
-						<th width="10%">DDD</th>
+						
 						<th width="10%">Telefone</th>
 						<th width="5%">Site</th>
 						<th width="5%">Ações</th>
@@ -95,8 +98,7 @@
 						<td>{{empresa.nomeFantasia}}</td>
 						<td>{{empresa.razaoSocial}}</td>
 						<td>{{empresa.cnpj}}</td>
-						<td>({{empresa.ddd}})</td>
-						<td>{{empresa.telefone}}</td>
+						<td>({{empresa.ddd}}) {{empresa.telefone}}</td>
 						<td>{{empresa.site}}</td>
 						<td>
 						<button type="button"  class="btn btn-danger form-control"  
@@ -116,7 +118,7 @@
 	<script src="js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="js/bootbox.min.js" type="text/javascript"></script>
 	<script src="js/ngBootBox.js" type="text/javascript"></script>
-
 	<script src="js/index.js" type="text/javascript"></script>
+
 </html>
 

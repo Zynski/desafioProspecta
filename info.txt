@@ -25,3 +25,4 @@ do Github com o desafio, que além do código deve conter as instruções necess
 execução da aplicação.
 OBS: Lembra de incluir o Dump da base utilizada junto ao repositório Github do desafio.
 
+É necessário informar as configurações de acesso ao banco de dados em Server\src\App\Conection\config.ini
