@@ -1,0 +1,122 @@
+<html ng-app="cadastroDeEmpresas">
+	<head>
+		<title>Cadastro de empresas</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="style/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="style/index.css">
+	</head>
+	<body ng-controller="cadastroDeEmpresasCtrl">
+		<div class="container">
+			<h4>Cadastro de empresas</h4>
+			<div class="row">
+				<div>
+					<form name="empresaForm" class="form-horizontal">
+						<div class="form-group">
+							<label for="inputNomeFantasia" class="col-sm-2 control-label">Nome fantasia: </label> 
+							<div class="col-sm-10"> 
+								<input class="form-control" type="text" name="nomeFantasia" ng-model="empresa.nomeFantasia" ng-required="true">	
+							</div> 
+						</div>
+
+						<div class="form-group">
+							<label for="inputRazaoSocial" class="col-sm-2 control-label">Razão social: </label>
+							<div class="col-sm-10"> 
+								<input class="form-control" type="text" name="razaoSocial" ng-model="empresa.razaoSocial" ng-required="true">							
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="inputCNPJ" class="col-sm-2 control-label">CNPJ: </label>
+							<div class="col-sm-10">
+								<input class="form-control" type="text" name="cnpj" ng-model="empresa.cnpj" ng-required="true">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputDDD" class="col-sm-2 control-label">DDD: </label>
+							<div class="col-sm-1">
+								<input class="form-control" type="text" name="ddd" ng-model="empresa.ddd" ng-required="true">
+							</div>
+
+							<label for="inputTelefone" class="col-sm-2 control-label">Telefone: </label>
+							<div class="col-sm-7">
+								<input class="form-control" type="text" name="telefone" ng-model="empresa.telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/">
+							</div>
+
+						</div>
+						<div class="form-group">
+							<label for="inputSite" class="col-sm-2 control-label">Site: </label>
+							<div class="col-sm-10">
+								<input class="form-control" type="text" name="site" ng-model="empresa.site">
+							</div>
+						</div>
+						<div class="form-group"> 
+							<div class="col-sm-offset-2 col-sm-2"> 
+								<button type="submit" class="btn btn-primary form-control"  ng-click="adicionarEmpresa(empresa)" ng-disabled= "empresaForm.$invalid">Salvar</button> 
+							</div> 
+							
+						</div>
+
+					</form>
+					<div ng-messages="empresaForm.nomeFantasia.$error" ng-show="empresaForm.nomeFantasia.$dirty">
+						<div class="alert alert-danger" ng-message="required">O campo Nome fantasia é obrigatório.</div>
+					</div>
+
+					<div ng-messages="empresaForm.razaoSocial.$error" ng-show="empresaForm.razaoSocial.$dirty">
+						<div class="alert alert-danger" ng-message="required">O campo Razão social é obrigatório.</div>
+					</div>
+
+					<div ng-messages="empresaForm.cnpj.$error" ng-show="empresaForm.cnpj.$dirty" >
+						<div class="alert alert-danger" ng-message="required">O campo cnpj é obrigatório.</div>
+					</div>
+					
+					<div ng-messages="empresaForm.ddd.$error" ng-show="empresaForm.ddd.$dirty">
+						<div class="alert alert-danger" ng-message="required">O campo DDD é obrigatório.</div>
+					</div>
+					
+					<div ng-messages="empresaForm.telefone.$error" ng-show="empresaForm.telefone.$dirty">
+						<div class="alert alert-danger" ng-message="required">O campo telefone é obrigatório.</div>
+						<div class="alert alert-danger" ng-message="pattern">O campo telefone deve estar no formato NNNN-NNNN.</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<table class="table table-striped">
+					<tr>
+						<th width="20%">Nome</th>
+						<th width="10%">Razão social</th>
+						<th width="10%">CNPJ</th>
+						<th width="10%">DDD</th>
+						<th width="10%">Telefone</th>
+						<th width="5%">Site</th>
+						<th width="5%">Ações</th>
+					</tr>
+
+					<tr ng-repeat="empresa in empresas">
+						<td>{{empresa.nomeFantasia}}</td>
+						<td>{{empresa.razaoSocial}}</td>
+						<td>{{empresa.cnpj}}</td>
+						<td>({{empresa.ddd}})</td>
+						<td>{{empresa.telefone}}</td>
+						<td>{{empresa.site}}</td>
+						<td>
+						<button type="button"  class="btn btn-danger form-control"  
+						 ng-bootbox-confirm="Você realmente deseja deletar esta empresa?"
+        				ng-bootbox-confirm-action="deletarEmpresa(empresa,$index)" 
+        				>Deletar</button></td>
+					</tr>
+				</table>
+
+			</div>
+		</div>
+
+	</body>
+	<script src="js/angular.min.js" type="text/javascript"></script>
+	<script src="js/angular-messages.min.js" type="text/javascript"></script>
+	<script src="js/jquery-2.2.3.min.js" type="text/javascript"></script>
+	<script src="js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="js/bootbox.min.js" type="text/javascript"></script>
+	<script src="js/ngBootBox.js" type="text/javascript"></script>
+
+	<script src="js/index.js" type="text/javascript"></script>
+</html>
+

@@ -1,0 +1,27 @@
+Desafio destinado a vaga de Desenvolvedor Web (PHP)
+
+
+E aí, beleza? Se você está querendo trabalhar em um ambiente descontraído, fazendo o que
+gosta e compartilhando conhecimento, este desafio é para você!
+
+
+
+Objetivo:
+Desenvolver um sistema com cadastro e listagem de empresas na linguagem PHP e SGBD
+MySQL.
+Campos: Razão social, Nome fantasia, CNPJ, DDD, Telefone, site (opcional)
+Instruções: Fica livre a utilização de algum framework Frontend e Backend a seu critério. Crie
+um repositório na sua conta do Github para commit do desafio.
+
+Operações que deve ter:
+ Listar Empresas.
+ Adicionar Empresas.
+ Remover uma Empresa com uma confirmação.
+
+É fundamental pensar nas validações, funcionalidade e usabilidade do usuário.
+
+Ao finalizar este desafio, envie-nos um e-mail para rh@prospectaempresas.com.br o endereço
+do Github com o desafio, que além do código deve conter as instruções necessárias para
+execução da aplicação.
+OBS: Lembra de incluir o Dump da base utilizada junto ao repositório Github do desafio.
+
